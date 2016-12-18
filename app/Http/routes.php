@@ -12,5 +12,13 @@
 */
 
 $app->get('/', function () use ($app) {
-    return $app->version();
+    $res['success'] = true;
+    $res['result'] = "Hello there welcome toweb api using lumen tutorial!";
+    return Response($res);
 });
+
+$app->post('/login', 'LoginController@index');
+$app->post('/register', 'UserController@index');
+$app->get('/user/{id}', ['middleware' => 'auth', 'uses' => 'UserController@get_user']);
+
+
